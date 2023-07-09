@@ -1,9 +1,11 @@
 .profile__job {
-  max-width: 21rem;
+  max-width: 23.25rem;
   font-size: 1.125rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  font-weight: 400;
+  margin: 0;
 }
 
 @media screen and (max-width: 540px) {

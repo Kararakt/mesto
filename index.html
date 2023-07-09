@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -12,7 +11,6 @@
   </head>
 
   <body class="page">
-
     <!-- Header -->
 
     <header class="header">
@@ -26,7 +24,6 @@
     <!-- Main content -->
 
     <main class="content">
-
       <!-- Profile -->
 
       <section class="profile">
@@ -39,12 +36,20 @@
           <div class="profile__info">
             <div class="profile__editor">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button type="button" class="profile__edit-button"></button>
+              <button
+                type="button"
+                aria-label="Изменение профиля"
+                class="profile__edit-button"
+              ></button>
             </div>
-            <span class="profile__job">Исследователь океана</span>
+            <h2 class="profile__job">Исследователь океана</h2>
           </div>
         </div>
-        <button type="button" class="profile__add-button"></button>
+        <button
+          type="button"
+          aria-label="Добавление карточки"
+          class="profile__add-button"
+        ></button>
       </section>
 
       <!-- Elements -->
@@ -59,7 +64,11 @@
             />
             <div class="element__description">
               <h2 class="element__title">Карачаевск</h2>
-              <button type="button" class="element__heart"></button>
+              <button
+                type="button"
+                aria-label="Сердце"
+                class="element__heart"
+              ></button>
             </div>
           </li>
           <li class="element">
@@ -70,7 +79,11 @@
             />
             <div class="element__description">
               <h2 class="element__title">Гора Эльбрус</h2>
-              <button type="button" class="element__heart"></button>
+              <button
+                type="button"
+                aria-label="Сердце"
+                class="element__heart"
+              ></button>
             </div>
           </li>
           <li class="element">
@@ -81,7 +94,11 @@
             />
             <div class="element__description">
               <h2 class="element__title">Домбай</h2>
-              <button type="button" class="element__heart"></button>
+              <button
+                type="button"
+                aria-label="Сердце"
+                class="element__heart"
+              ></button>
             </div>
           </li>
           <li class="element">
@@ -92,7 +109,11 @@
             />
             <div class="element__description">
               <h2 class="element__title">Гора Эльбрус</h2>
-              <button type="button" class="element__heart"></button>
+              <button
+                type="button"
+                aria-label="Сердце"
+                class="element__heart"
+              ></button>
             </div>
           </li>
           <li class="element">
@@ -103,7 +124,11 @@
             />
             <div class="element__description">
               <h2 class="element__title">Домбай</h2>
-              <button type="button" class="element__heart"></button>
+              <button
+                type="button"
+                aria-label="Сердце"
+                class="element__heart"
+              ></button>
             </div>
           </li>
           <li class="element">
@@ -114,36 +139,51 @@
             />
             <div class="element__description">
               <h2 class="element__title">Карачаево-Черкесия</h2>
-              <button type="button" class="element__heart"></button>
+              <button
+                type="button"
+                aria-label="Сердце"
+                class="element__heart"
+              ></button>
             </div>
           </li>
         </ul>
       </section>
-
     </main>
 
     <!-- Footer -->
 
     <footer class="footer">
-      <span class="footer__copyright">&#169; 2023 Mesto Russia</span>
+      <p class="footer__copyright">&#169; 2023 Mesto Russia</p>
     </footer>
 
     <!-- Popup -->
-    
+
     <section class="popup">
       <div class="popup__container">
-        <button type="button" class="popup__close"></button>
+        <button
+          type="button"
+          aria-label="Закрытие окна"
+          class="popup__close"
+        ></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form">
-          <input type="text" class="popup__input popup__input_type_name" />
-          <input type="text" class="popup__input popup__input_type_job" />
+        <form name="profile-form" class="popup__form">
+          <input
+            type="text"
+            name="name"
+            placeholder="Введите имя"
+            class="popup__input popup__input_type_name"
+          />
+          <input
+            type="text"
+            name="job"
+            placeholder="Введите работу"
+            class="popup__input popup__input_type_job"
+          />
           <button type="submit" class="popup__submit-button">Сохранить</button>
         </form>
       </div>
     </section>
 
     <script src="./scripts/index.js"></script>
-
   </body>
-
 </html>
