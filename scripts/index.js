@@ -6,8 +6,11 @@ const formEditProfile = popupProfileEdit.querySelector('.popup__form');
 
 const popupAddElement = document.querySelector('.popup_type_add-element');
 const formAddElement = popupAddElement.querySelector('.popup__form');
+const popupAddButton = popupAddElement.querySelector('.popup__submit-button');
 
 const popupImage = document.querySelector('.popup_type_image');
+const openImage = popupImage.querySelector('.popup__image');
+const openImageCaption = popupImage.querySelector('.popup__caption');
 
 const nameInput = popupProfileEdit.querySelector('.popup__input_type_name');
 const jobInput = popupProfileEdit.querySelector('.popup__input_type_job');
@@ -70,11 +73,9 @@ const createElement = (data) => {
   elementImage.addEventListener('click', () => {
     openPopup(popupImage);
 
-    const openImage = popupImage.querySelector('.popup__image');
     openImage.src = data.link;
     openImage.alt = `Фото ${data.name}`;
 
-    const openImageCaption = popupImage.querySelector('.popup__caption');
     openImageCaption.textContent = data.name;
   });
 
@@ -110,8 +111,8 @@ const handleAddElementFormSubmit = (event) => {
 
 const closePopupByKey = (event) => {
   const key = event.key;
-  const popupName = document.querySelector('.popup_opened');
   if (key === 'Escape') {
+    const popupName = document.querySelector('.popup_opened');
     closePopup(popupName);
   }
 };
@@ -148,6 +149,8 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   openPopup(popupAddElement);
+  popupAddButton.setAttribute('disabled', true);
+  popupAddButton.classList.add('popup__submit-button_disabled');
 });
 
 formEditProfile.addEventListener('submit', handleEditFormSubmit);
