@@ -110,17 +110,17 @@ const handleAddElementFormSubmit = (event) => {
 
 const closePopupByKey = (event) => {
   const key = event.key;
-  const popup = document.querySelector('.popup_opened');
+  const popupName = document.querySelector('.popup_opened');
   if (key === 'Escape') {
-    closePopup(popup);
+    closePopup(popupName);
   }
 };
 
 const closePopupByOverlay = (event) => {
   const evt = event.target;
-  const popup = evt.closest('.popup');
-  if (evt === popup) {
-    closePopup(popup);
+  const popupName = evt.closest('.popup');
+  if (evt === popupName) {
+    closePopup(popupName);
   }
 };
 
