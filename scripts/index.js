@@ -1,3 +1,6 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 
@@ -8,10 +11,6 @@ const popupAddElement = document.querySelector('.popup_type_add-element');
 const formAddElement = popupAddElement.querySelector('.popup__form');
 const popupAddButton = popupAddElement.querySelector('.popup__submit-button');
 
-const popupImage = document.querySelector('.popup_type_image');
-const openImage = popupImage.querySelector('.popup__image');
-const openImageCaption = popupImage.querySelector('.popup__caption');
-
 const nameInput = popupProfileEdit.querySelector('.popup__input_type_name');
 const jobInput = popupProfileEdit.querySelector('.popup__input_type_job');
 const titleInput = popupAddElement.querySelector('.popup__input_type_title');
@@ -20,7 +19,6 @@ const imageInput = popupAddElement.querySelector('.popup__input_type_image');
 const nameProfile = document.querySelector('.profile__name');
 const jobProfile = document.querySelector('.profile__job');
 
-const elementTemplate = document.querySelector('.template');
 const container = document.querySelector('.elements__container');
 
 const closeButtons = document.querySelectorAll('.popup__close');
@@ -52,43 +50,30 @@ const initialCards = [
   },
 ];
 
-const renderInitialElements = () => {
-  initialCards.forEach((item) => {
-    container.append(createElement(item));
-  });
+const validationObject = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active',
 };
 
-const createElement = (data) => {
-  const element = elementTemplate.content.cloneNode(true);
+const createCard = (cardInfo) => {
+  const card = new Card(cardInfo, '.template');
+  const cardElement = card.generateCard();
+  return cardElement;
+};
 
-  const elementDelete = element.querySelector('.element__delete');
-  elementDelete.addEventListener('click', (event) => {
-    const el = event.target.closest('.element');
-    el.remove();
+const validateForm = (form) => {
+  const valid = new FormValidator(validationObject, form);
+  valid.enableValidation();
+};
+
+const renderInitialElements = () => {
+  initialCards.forEach((item) => {
+    container.append(createCard(item));
   });
-
-  const elementImage = element.querySelector('.element__image');
-  elementImage.src = data.link;
-  elementImage.alt = `Фото ${data.name}`;
-  elementImage.addEventListener('click', () => {
-    openPopup(popupImage);
-
-    openImage.src = data.link;
-    openImage.alt = `Фото ${data.name}`;
-
-    openImageCaption.textContent = data.name;
-  });
-
-  const elementTitle = element.querySelector('.element__title');
-  elementTitle.textContent = data.name;
-
-  const elementHeart = element.querySelector('.element__heart');
-  elementHeart.addEventListener('click', (event) => {
-    const likeButton = event.target.closest('.element__heart');
-    likeButton.classList.toggle('element__heart_active');
-  });
-
-  return element;
 };
 
 const handleEditFormSubmit = (event) => {
@@ -100,7 +85,7 @@ const handleEditFormSubmit = (event) => {
 
 const handleAddElementFormSubmit = (event) => {
   event.preventDefault();
-  const newElement = createElement({
+  const newElement = createCard({
     name: titleInput.value,
     link: imageInput.value,
   });
@@ -125,7 +110,7 @@ const closePopupByOverlay = (event) => {
   }
 };
 
-const openPopup = (popupName) => {
+export const openPopup = (popupName) => {
   popupName.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByKey);
   document.addEventListener('click', closePopupByOverlay);
@@ -156,5 +141,9 @@ addButton.addEventListener('click', () => {
 formEditProfile.addEventListener('submit', handleEditFormSubmit);
 
 formAddElement.addEventListener('submit', handleAddElementFormSubmit);
+
+validateForm(formEditProfile);
+
+validateForm(formAddElement);
 
 renderInitialElements();
