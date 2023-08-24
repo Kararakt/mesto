@@ -1,36 +1,32 @@
-import { openPopup } from './index.js';
-
-const popupImage = document.querySelector('.popup_type_image');
-
 export class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, openPopup) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._openPopup = openPopup;
+    this._popupImage = document.querySelector('.popup_type_image');
+    this._openImage = this._popupImage.querySelector('.popup__image');
+    this._openImageCaption = this._popupImage.querySelector('.popup__caption');
   }
 
   _getTemplate() {
-    const cardElement = document
+    return document
       .querySelector(this._templateSelector)
       .content.querySelector('.element')
       .cloneNode(true);
-
-    return cardElement;
   }
 
-  _handleDeleteCard(event) {
-    const el = event.target.closest('.element');
-    el.remove();
+  _handleDeleteCard() {
+    this._element.remove();
   }
 
   _handleOpenPopupImage() {
-    openPopup(popupImage);
+    this._openPopup(this._popupImage);
 
-    const openImage = popupImage.querySelector('.popup__image');
-    openImage.src = this._link;
-    openImage.alt = this._name;
+    this._openImage.src = this._link;
+    this._openImage.alt = this._name;
 
-    popupImage.querySelector('.popup__caption').textContent = this._name;
+    this._openImageCaption.textContent = this._name;
   }
 
   _handleLikeCard(event) {
@@ -41,8 +37,8 @@ export class Card {
   _setEventListeners() {
     this._element
       .querySelector('.element__delete')
-      .addEventListener('click', (event) => {
-        this._handleDeleteCard(event);
+      .addEventListener('click', () => {
+        this._handleDeleteCard();
       });
 
     this._element
