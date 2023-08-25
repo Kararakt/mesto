@@ -1,12 +1,19 @@
 export class Card {
-  constructor(data, templateSelector, openPopup) {
+  constructor(
+    data,
+    templateSelector,
+    openPopup,
+    popupImage,
+    openImage,
+    openImageCaption
+  ) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._openPopup = openPopup;
-    this._popupImage = document.querySelector('.popup_type_image');
-    this._openImage = this._popupImage.querySelector('.popup__image');
-    this._openImageCaption = this._popupImage.querySelector('.popup__caption');
+    this._popupImage = popupImage;
+    this._openImage = openImage;
+    this._openImageCaption = openImageCaption;
   }
 
   _getTemplate() {

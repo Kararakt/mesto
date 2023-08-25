@@ -11,6 +11,10 @@ const formEditProfile = popupProfileEdit.querySelector('.popup__form');
 const popupAddElement = document.querySelector('.popup_type_add-element');
 const formAddElement = popupAddElement.querySelector('.popup__form');
 
+const popupImage = document.querySelector('.popup_type_image');
+const openImage = popupImage.querySelector('.popup__image');
+const openImageCaption = popupImage.querySelector('.popup__caption');
+
 const nameInput = popupProfileEdit.querySelector('.popup__input_type_name');
 const jobInput = popupProfileEdit.querySelector('.popup__input_type_job');
 const titleInput = popupAddElement.querySelector('.popup__input_type_title');
@@ -32,14 +36,20 @@ const validationObject = {
   errorClass: 'popup__input-error_active',
 };
 
-const createCard = (cardInfo) => {
-  const card = new Card(cardInfo, '.template', openPopup);
-  return card.generateCard();
-};
+const validationProfile = new FormValidator(validationObject, formEditProfile);
 
-const validateForm = (form) => {
-  const valid = new FormValidator(validationObject, form);
-  valid.enableValidation();
+const validationCard = new FormValidator(validationObject, formAddElement);
+
+const createCard = (cardInfo) => {
+  const card = new Card(
+    cardInfo,
+    '.template',
+    openPopup,
+    popupImage,
+    openImage,
+    openImageCaption
+  );
+  return card.generateCard();
 };
 
 const renderInitialElements = () => {
@@ -101,8 +111,7 @@ const openEditPopup = () => {
 
 const openAddPopup = () => {
   openPopup(popupAddElement);
-  const button = new FormValidator(validationObject, formAddElement);
-  button.disableSubmitButton();
+  validationCard.disableSubmitButton();
 };
 
 closeButtons.forEach((button) => {
@@ -118,8 +127,8 @@ formEditProfile.addEventListener('submit', handleEditFormSubmit);
 
 formAddElement.addEventListener('submit', handleAddElementFormSubmit);
 
-validateForm(formEditProfile);
+validationProfile.enableValidation();
 
-validateForm(formAddElement);
+validationCard.enableValidation();
 
 renderInitialElements();
