@@ -1,7 +1,7 @@
 .popup__close {
   height: 2rem;
   width: 2rem;
-  background-image: url("../../../image/close-icon.svg");
+  background-image: url("../../../images/close-icon.svg");
   background-color: transparent;
   position: absolute;
   top: -2.5rem;
