@@ -1,10 +1,10 @@
 import '../pages/index.css';
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import { Section } from './Section.js';
-import { UserInfo } from './UserInfo.js';
-import { PopupWithImage } from './PopupWithImage.js';
-import { PopupWithForm } from './PopupWithForm.js';
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { Section } from '../components/Section.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
 import {
   initialCards,
   validationObject,
@@ -17,12 +17,12 @@ import {
   addButton,
 } from '../utils/constants.js';
 
-const renderInitialCard = new Section(
+const cardsSection = new Section(
   {
     items: initialCards,
     renderer: (item) => {
       const newElement = createCard(item);
-      renderInitialCard.addItem(newElement);
+      cardsSection.addItem(newElement);
     },
   },
   '.elements__container'
@@ -39,16 +39,22 @@ const userInfoClass = new UserInfo(userInfoObject);
 
 const popupImageClass = new PopupWithImage('.popup_type_image');
 
-const popupProfileClass = new PopupWithForm('.popup_type_profile-edit', () => {
-  userInfoClass.setUserInfo(popupProfileClass._getInputValues());
-  popupProfileClass.close();
-});
+const popupProfileClass = new PopupWithForm(
+  '.popup_type_profile-edit',
+  (inputValues) => {
+    userInfoClass.setUserInfo(inputValues);
+    popupProfileClass.close();
+  }
+);
 
-const popupAddCardClass = new PopupWithForm('.popup_type_add-element', () => {
-  const newElement = createCard(popupAddCardClass._getInputValues());
-  renderInitialCard.addItem(newElement);
-  popupAddCardClass.close();
-});
+const popupAddCardClass = new PopupWithForm(
+  '.popup_type_add-element',
+  (inputValues) => {
+    const newElement = createCard(inputValues);
+    cardsSection.addItem(newElement);
+    popupAddCardClass.close();
+  }
+);
 
 const validationProfile = new FormValidator(validationObject, formEditProfile);
 
@@ -80,4 +86,4 @@ validationProfile.enableValidation();
 
 validationCard.enableValidation();
 
-renderInitialCard.renderItems();
+cardsSection.renderItems();
