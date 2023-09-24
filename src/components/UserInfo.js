@@ -18,8 +18,4 @@ export class UserInfo {
     this._jobSelector.textContent = userInfo.about;
     this._avatarSelector.style.backgroundImage = `url(${userInfo.avatar})`;
   }
-
-  getUserId(userId) {
-    return userId;
-  }
 }

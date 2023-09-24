@@ -1,21 +1,17 @@
-class Api {
+export class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
 
   _getRequest(url, options) {
-    return fetch(url, options)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
+    return fetch(url, options).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
 
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
   }
 
   getUserInfo() {
@@ -85,11 +81,3 @@ class Api {
     });
   }
 }
-
-export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-76',
-  headers: {
-    authorization: 'f0dba71b-d2b0-43ce-9b43-97ba5085a42c',
-    'Content-Type': 'application/json',
-  },
-});
