@@ -4,7 +4,6 @@
   background-image: url("../../../images/heart.svg");
   background-color: transparent;
   border: 0;
-  margin: 0.3125rem 0.3125rem 0 0;
   transition: opacity 0.35s linear;
   cursor: pointer;
   padding: 0;

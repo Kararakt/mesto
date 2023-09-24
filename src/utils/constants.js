@@ -37,10 +37,12 @@ export const validationObject = {
 export const userInfoObject = {
   nameSelector: '.profile__name',
   jobSelector: '.profile__job',
+  avatarSelector: '.profile__image',
 };
 
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
+export const avatarEditButton = document.querySelector('.profile__avatar-edit');
 
 export const popupImage = document.querySelector('.popup_type_image');
 
@@ -55,3 +57,6 @@ export const jobInput = popupProfileEdit.querySelector(
 
 const popupAddElement = document.querySelector('.popup_type_add-element');
 export const formAddElement = popupAddElement.querySelector('.popup__form');
+
+const popupAddAvatar = document.querySelector('.popup_type_avatar');
+export const formAddAvatar = popupAddAvatar.querySelector('.popup__form');

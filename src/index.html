@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -11,7 +10,6 @@
   </head>
 
   <body class="page">
-
     <!-- Header -->
 
     <header class="header">
@@ -25,26 +23,27 @@
     <!-- Main content -->
 
     <main class="content">
-
       <!-- Profile -->
 
       <section class="profile">
         <div class="profile__container">
-          <img
-            src="<%=require('../src/images/avatar.png')%>"
-            alt="Фото аватара"
-            class="profile__image"
-          />
+          <div class="profile__image">
+            <button
+              type="button"
+              aria-label="Изменение аватара"
+              class="profile__avatar-edit"
+            ></button>
+          </div>
           <div class="profile__info">
             <div class="profile__editor">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <h1 class="profile__name"></h1>
               <button
                 type="button"
                 aria-label="Изменение профиля"
                 class="profile__edit-button"
               ></button>
             </div>
-            <h2 class="profile__job">Исследователь океана</h2>
+            <h2 class="profile__job"></h2>
           </div>
         </div>
         <button
@@ -155,6 +154,47 @@
       </div>
     </section>
 
+    <!-- Popup add avatar -->
+
+    <section class="popup popup_type_avatar">
+      <div class="popup__container">
+        <button
+          type="button"
+          aria-label="Закрытие окна"
+          class="popup__close"
+        ></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="add-avatar" class="popup__form" novalidate>
+          <input
+            type="url"
+            name="avatar"
+            placeholder="Введите ссылку на картинку"
+            id="avatar"
+            required
+            class="popup__input popup__input_type_avatar"
+          />
+          <span id="avatar-error" class="popup__input-error"></span>
+          <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Popup confirm -->
+
+    <section class="popup popup_type_confirm">
+      <div class="popup__container">
+        <button
+          type="button"
+          aria-label="Закрытие окна"
+          class="popup__close"
+        ></button>
+        <h2>Вы уверены?</h2>
+        <form name="confirm" class="popup__form" novalidate>
+          <button type="submit" class="popup__submit-button">Да</button>
+        </form>
+      </div>
+    </section>
+
     <!-- Element template -->
 
     <template class="template">
@@ -167,15 +207,16 @@
         <img src="#" alt="" class="element__image" />
         <div class="element__description">
           <h2 class="element__title"></h2>
-          <button
-            type="button"
-            aria-label="Сердце"
-            class="element__heart"
-          ></button>
+          <div class="element__like-info">
+            <button
+              type="button"
+              aria-label="Сердце"
+              class="element__heart"
+            ></button>
+            <span class="element__count"></span>
+          </div>
         </div>
       </li>
     </template>
-
   </body>
-
 </html>
