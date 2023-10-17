@@ -164,16 +164,17 @@ const openEditPopup = () => {
   const user = aboutUser.getUserInfo();
   titleInput.value = user.title;
   jobInput.value = user.job;
+  validationProfile.resetValidation();
 };
 
 const openAddPopup = () => {
   popupAddCard.open();
-  validationCard.disableSubmitButton();
+  validationCard.resetValidation();
 };
 
 const openAvatarPopup = () => {
   popupAvatar.open();
-  validationAvatar.disableSubmitButton();
+  validationAvatar.resetValidation();
 };
 
 editButton.addEventListener('click', openEditPopup);
