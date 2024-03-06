@@ -11,7 +11,7 @@
 - Webpack
 - HTML
 - CSS
-- Javascript
+- JavaScript
 
 ## Требования
 Для запуска проекта, необходимо установить:
